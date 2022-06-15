@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Blog from './Blog/Blog';
 import './home.css';
 
 //type SomeComponentProps = NavigateProps;
-const Home: FC = () => {
+const Home = (props:{currentUser:String}) => {
 	const navigation = useNavigate();
 	const logout = () => {
 		localStorage.clear();
@@ -30,11 +31,11 @@ const Home: FC = () => {
 			</div>
 			<div className='container'>
 				<div
-					className='row d-flex justify-content-center align-items-center text-center'
-					style={{ height: '100vh' }}>
-					<p className='muted display-6'>Hello User👋</p>
+					className='row d-flex justify-content-center align-items-center text-center'>
+					<p className='muted display-6'>Hello User👋 {props.currentUser}</p>
 				</div>
 			</div>
+			<Blog username={props.currentUser}/>
 		</>
 	);
 };

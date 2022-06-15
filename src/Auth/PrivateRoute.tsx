@@ -10,12 +10,15 @@ export type ProtectedRouteProps = {
   const PrivateRoute =({outlet}: ProtectedRouteProps) => {
     const navigation = useNavigate();
     const token = localStorage.getItem('auth');
-    if(token) {
+    //var token= true;
+    useEffect(():void=>{
+      if(!token) {
+          navigation('/login');
+      }  
+    },[navigation, token])
+    
+    if(token){
       return outlet;
-    } else {
-        setTimeout(() => {
-        navigation('/login');
-    }, 1000)
     }
-  };
+    };
   export default PrivateRoute;

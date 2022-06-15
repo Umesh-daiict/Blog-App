@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { useNavigate } from 'react-router';
 
 //type SomeComponentProps = RouteComponentProps;
-const Login: FC = (): JSX.Element => {
+const Login = (props:{onLogin:(currentUser:String)=>void}): JSX.Element => {
 	const {
 		register,
 		handleSubmit,
@@ -48,6 +48,7 @@ const Login: FC = (): JSX.Element => {
 					localStorage.setItem('auth', response.data.token);
 					setTimeout(() => {
 						//history.push("/");
+						props.onLogin(params.username);
 						navigation('/home');
 					}, 3000);
 				}
