@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { useNavigate } from 'react-router';
 
 //type SomeComponentProps = RouteComponentProps;
-const Login = (props:{onLogin:(currentUser:String)=>void}): JSX.Element => {
+const Login = (): JSX.Element => {
 	const {
 		register,
 		handleSubmit,
@@ -45,10 +45,10 @@ const Login = (props:{onLogin:(currentUser:String)=>void}): JSX.Element => {
 						progress: 0,
 						toastId: 'my_toast',
 					});
+					localStorage.setItem('user',params.username);
 					localStorage.setItem('auth', response.data.token);
 					setTimeout(() => {
 						//history.push("/");
-						props.onLogin(params.username);
 						navigation('/home');
 					}, 3000);
 				}

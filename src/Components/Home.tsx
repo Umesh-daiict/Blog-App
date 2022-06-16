@@ -4,8 +4,9 @@ import Blog from './Blog/Blog';
 import './home.css';
 
 //type SomeComponentProps = NavigateProps;
-const Home = (props:{currentUser:String}) => {
+const Home = () => {
 	const navigation = useNavigate();
+	const curUser= localStorage.getItem('user');
 	const logout = () => {
 		localStorage.clear();
 		// history.push("/login");
@@ -32,10 +33,10 @@ const Home = (props:{currentUser:String}) => {
 			<div className='container'>
 				<div
 					className='row d-flex justify-content-center align-items-center text-center'>
-					<p className='muted display-6'>Hello User👋 {props.currentUser}</p>
+					<p className='muted display-6'>Hello User👋 : {curUser}</p>
 				</div>
 			</div>
-			<Blog username={props.currentUser}/>
+			<Blog />
 		</>
 	);
 };

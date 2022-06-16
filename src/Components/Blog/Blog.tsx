@@ -6,9 +6,10 @@ import FormData from "form-data";
 //import AddUser from './components/Users/AddUser';
 //import UsersList from './components/Users/UsersList';
 
-function Blog(props: { username: String }) {
+function Blog() {
 	const [tempBlog, setTempBlog] = useState([]);	
 	const [isLoading, setIsLoading] = useState(true);
+	const username=localStorage.getItem('user');
 	const getBlogs=()=>{
 		axios.get('http://localhost:3000/blog/all').then(blogs=>{
 			console.log(blogs);
@@ -26,7 +27,7 @@ function Blog(props: { username: String }) {
 			formData.append('photo', photo1);
 			formData.append('desc1', desc2);
 			
-			formData.append('username',props.username);
+			formData.append('username',username);
 			
 			axios
 				.post('http://localhost:3000/blog/Create', formData)
