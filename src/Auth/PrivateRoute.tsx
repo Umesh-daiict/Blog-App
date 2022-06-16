@@ -1,6 +1,7 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import SignUp from '../Components/AuthComponent/SignUp';
 
 export type ProtectedRouteProps = {
 
@@ -10,15 +11,15 @@ export type ProtectedRouteProps = {
   const PrivateRoute =({outlet}: ProtectedRouteProps) => {
     const navigation = useNavigate();
     const token = localStorage.getItem('auth');
-    //var token= true;
-    useEffect(():void=>{
-      if(!token) {
-          navigation('/login');
-      }  
-    },[navigation, token])
-    
-    if(token){
+    if(token) {
       return outlet;
+    } else {
+     
+        setTimeout(() => {
+        navigation('/login');
+       
+    }, 0)
+    return <SignUp />;
     }
-    };
+  };
   export default PrivateRoute;
