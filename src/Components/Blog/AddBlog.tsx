@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AddBlog.css';
-
+import { Editor } from '@tinymce/tinymce-react';
+	
 // import Card from '../UI/Card';
 // import Button from '../UI/Button';
 // import ErrorModal from '../UI/ErrorModel';
@@ -11,11 +12,12 @@ const AddBlog = (props: {
 }) => {
 	const [title, setTitle] = useState('');
 	const [enteredBlogDesc, setenteredBlogDesc] = useState('');
-	const [enteredBlogPhoto, setenteredBlogPhoto] = useState<File>();
+	const [enteredBlogPhoto, setenteredBlogPhoto] = useState<File|undefined>();
+	
 	
 	const addUserHandler = (event: React.SyntheticEvent) => {
 		event.preventDefault();
-		if (enteredBlogDesc.trim().length === 0||enteredBlogDesc.trim().length === 0|| enteredBlogPhoto===null) {
+		if (enteredBlogDesc.trim().length === 0||enteredBlogDesc.trim().length === 0|| enteredBlogPhoto===undefined) {
 			return;
 		}
 		console.log(enteredBlogPhoto);
@@ -30,20 +32,17 @@ const AddBlog = (props: {
 		setenteredBlogDesc(e.currentTarget.value);
 	};
 	const handlePhoto: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+		if(e.currentTarget.files===null)
+		{
+			return;
+		}
 		setenteredBlogPhoto(e.currentTarget.files[0]);
 	};
 
 
 
 	return (
-		<div>
-			{/* {error && (
-        <ErrorModal
-          title={error.title}
-          message={error.message}
-          onConfirm={errorHandler}
-        />
-      )} */}
+		
 			<div  className='blogForm'>
 				<form onSubmit={addUserHandler}>
 				<label  htmlFor='blogTitle'>Blog Title</label>
@@ -64,16 +63,20 @@ const AddBlog = (props: {
 						/>
 
 						<label htmlFor='blogdesc'>Blog Description</label>
-			
-						 <textarea className='textarea' autoComplete="off" onChange={blogDescHandler} value={enteredBlogDesc} id="blogdesc"rows={6} cols={50} >
-     					</textarea>
+
+						<Editor
+						textareaName='textarea'
+						value={enteredBlogDesc}
+						id="blogdesc"
+						initialValue='write your blog'
+						onEditorChange={(newText)=>{setenteredBlogDesc(newText)}}
+						/>
 		             	<button type='submit' className='addbtn'>
 							Add blog
 						</button>
 
 				</form>
-			</div>
-		</div>
+			</div>	
 	);
 };
 

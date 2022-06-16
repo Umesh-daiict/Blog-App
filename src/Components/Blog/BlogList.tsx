@@ -18,7 +18,7 @@ const BlogList =  (props:{tempBlog:any[],getData:()=>void,isLoading:boolean}) =>
 						marginRight: 'auto',
 						borderRadius: '5px'}}
 					/>
-	 	           <p style={{wordBreak: 'break-all',whiteSpace: 'normal'}}>{blog.desc1}</p>
+	 	           <div  dangerouslySetInnerHTML={{__html:blog.desc1}} />
 					<div className="info">      
         			<h5>Written by: {blog.username}</h5>
       				</div>
