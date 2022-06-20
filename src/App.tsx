@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import SignUp from './Components/AuthComponent/SignUp';
-import Login from './Components/AuthComponent/Login';
-import PrivateRoute from './Auth/PrivateRoute';
-import Home from './Components/Home';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-  
-// interface UserData {
-// 	username: string;
-	
+import Header from './Components/UI/Navbar';
+
+import { BrowserRouter } from 'react-router-dom';
+import Blog from './Components/Blog/Blog';
+import NavTabs from './Components/UI/Tab';
 //   }
 function App() {
 
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path='/register' element={<SignUp />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/home' element={<PrivateRoute  outlet={<Home/>} />} />
-			</Routes>
-		</BrowserRouter>
+		<div className='App'>
+			<BrowserRouter>
+				<Header />
+				<NavTabs />
+				<Blog />
+			</BrowserRouter>
+
+		</div>
 	);
 }
 export default App;

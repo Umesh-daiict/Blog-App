@@ -1,25 +1,16 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SignUp from '../Components/AuthComponent/SignUp';
+import { Navigate } from 'react-router-dom';
 
 export type ProtectedRouteProps = {
+	authenticationPath: string;
+	outlet: JSX.Element;
+};
 
-    outlet: JSX.Element;
-  };
-  
-  const PrivateRoute =({outlet}: ProtectedRouteProps) => {
-    const navigation = useNavigate();
-    const token = localStorage.getItem('auth');
-    if(token) {
-      return outlet;
-    } else {
-     
-        setTimeout(() => {
-        navigation('/login');
-       
-    }, 0)
-    return <SignUp />;
-    }
-  };
-  export default PrivateRoute;
+export default function PrivateRoute({ authenticationPath, outlet }: ProtectedRouteProps) {
+	const isAuthenticated = localStorage.getItem('auth') ? 1 : 1;
+	if (isAuthenticated) {
+		return outlet;
+	} else {
+		return <Navigate to={{ pathname: authenticationPath }} />;
+	}
+};

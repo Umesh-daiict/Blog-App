@@ -1,11 +1,10 @@
 .blogForm {
     margin: 2rem auto;
     padding: 1rem;
-    width: 90%;
-    max-width: 90%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    width: 95%;
+    max-width: 95%;
     border-radius: 10px;
-    background: rgb(255, 255, 255);
+    background: rgb(255, 255, 255); 
   }
   
   .blogForm label {
@@ -36,24 +35,4 @@
     outline: none;
     border-color: #01554a;
   }
-  .addbtn
-{
-    color: white;
-    background: rgb(109, 100, 237);
-    padding: 3px 6px;
-    margin: 2px;
-    border-color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-  
-.addbtn:hover,
-.addbtn:active {
-  background: #27026b;
-  border-color: #176101;
-}
 
-.addbtn:focus {
-  outline: none;
-}

@@ -1,39 +1,32 @@
 import React, { useState } from 'react';
 import './AddBlog.css';
 import { Editor } from '@tinymce/tinymce-react';
-	
-// import Card from '../UI/Card';
-// import Button from '../UI/Button';
-// import ErrorModal from '../UI/ErrorModel';
-//import classes from ;
-
+import { Button, Card } from '@material-ui/core';
+//import { svSave } from '@material-ui/icons/Save';
 const AddBlog = (props: {
-	onAddBlog: (title: string,desc1: string, photo: File) => void;
+	onAddBlog: (title: string, desc1: string, photo: File) => void;
 }) => {
 	const [title, setTitle] = useState('');
 	const [enteredBlogDesc, setenteredBlogDesc] = useState('');
-	const [enteredBlogPhoto, setenteredBlogPhoto] = useState<File|undefined>();
-	
-	
+	const [enteredBlogPhoto, setenteredBlogPhoto] = useState<File | undefined>();
+
+
 	const addUserHandler = (event: React.SyntheticEvent) => {
 		event.preventDefault();
-		if (enteredBlogDesc.trim().length === 0||enteredBlogDesc.trim().length === 0|| enteredBlogPhoto===undefined) {
+		if (enteredBlogDesc.trim().length === 0 || enteredBlogDesc.trim().length === 0 || enteredBlogPhoto === undefined) {
 			return;
 		}
 		console.log(enteredBlogPhoto);
-		props.onAddBlog(title,enteredBlogDesc, enteredBlogPhoto);
+		props.onAddBlog(title, enteredBlogDesc, enteredBlogPhoto);
 		setenteredBlogDesc('');
 		setTitle('');
 		setenteredBlogPhoto(undefined);
 		//  setEnteredAge('');
 	};
 
-	const blogDescHandler: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-		setenteredBlogDesc(e.currentTarget.value);
-	};
+
 	const handlePhoto: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-		if(e.currentTarget.files===null)
-		{
+		if (e.currentTarget.files === null) {
 			return;
 		}
 		setenteredBlogPhoto(e.currentTarget.files[0]);
@@ -42,41 +35,42 @@ const AddBlog = (props: {
 
 
 	return (
-		
-			<div  className='blogForm'>
+		<Card style={{ width: '95%', height: '95%', margin: 'auto' }}>
+			<div className='blogForm'>
 				<form onSubmit={addUserHandler}>
-				<label  htmlFor='blogTitle'>Blog Title</label>
+					<label htmlFor='blogTitle'>Blog Title</label>
 					<input
-					id='blogTitle'
-					type="text"
-					required
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
+						id='blogTitle'
+						type="text"
+						required
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
 					/>
-						<input
-							type='file'
-							accept='.png, .jpg, .jpeg'
-							name='photo'
-							id='photo'
-							key='photo'
-							onChange={handlePhoto}
-						/>
+					<input
+						type='file'
+						accept='.png, .jpg, .jpeg'
+						name='photo'
+						id='photo'
+						key='photo'
+						onChange={handlePhoto}
+					/>
 
-						<label htmlFor='blogdesc'>Blog Description</label>
+					<label htmlFor='blogdesc'>Blog Description</label>
 
-						<Editor
+					<Editor
 						textareaName='textarea'
 						value={enteredBlogDesc}
 						id="blogdesc"
 						initialValue='write your blog'
-						onEditorChange={(newText)=>{setenteredBlogDesc(newText)}}
-						/>
-		             	<button type='submit' className='addbtn'>
-							Add blog
-						</button>
+						onEditorChange={(newText) => { setenteredBlogDesc(newText) }}
+					/>
+					<Button color='primary' type='submit' variant='contained' className='Button' style={{ marginTop: '5px' }}	 >
+						Create Blog!
+					</Button>
 
 				</form>
-			</div>	
+			</div>
+		</Card>
 	);
 };
 
