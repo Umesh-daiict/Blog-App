@@ -7,7 +7,7 @@ export type ProtectedRouteProps = {
 };
 
 export default function PrivateRoute({ authenticationPath, outlet }: ProtectedRouteProps) {
-	const isAuthenticated = localStorage.getItem('auth') ? 1 : 1;
+	const isAuthenticated = localStorage.getItem('auth') ? 1 : 0;
 	if (isAuthenticated) {
 		return outlet;
 	} else {

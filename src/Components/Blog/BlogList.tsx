@@ -11,7 +11,7 @@ const BlogList = (props: { tempBlog: any[], getData: () => void, isLoading: bool
 	return (
 		<div className="posts-container">
 			<ul>
-				{props.tempBlog ? props.tempBlog.map((blog: any) => (
+				{!props.isLoading ? props.tempBlog.map((blog: any) => (
 					<li key={blog._id}>
 						<h1 className="heading">{blog.title}</h1>
 						<img
@@ -27,37 +27,10 @@ const BlogList = (props: { tempBlog: any[], getData: () => void, isLoading: bool
 							<h5>Written by: {blog.username}</h5>
 						</div>
 					</li>
-				)) : <h2>NO BLOGS</h2>}
+				)) : <h2>Loading The Blogs...</h2>}
 
 			</ul>
-			{/* <ul>
-				{
-					props.tempBlog ? props.tempBlog.map((blog: any) => (
-						<Card style={{ height: '95%', width: '90%', margin: 'auto' }} key={blog._id}>
-							<CardActionArea>
-								<CardMedia
-									component="img"
-									height="140"
-									src={`data:image/png;base64,${Buffer.from(blog.photo).toString('base64')}`}
-									alt="blogs"
-								/>
-								<CardContent>
-									<Typography gutterBottom variant="h5" component="div">
-										{blog.title}
-									</Typography>
-									<Typography variant="body2" color="secondary">
-										<div dangerouslySetInnerHTML={{ __html: blog.desc1 }} />
-									</Typography>
-								</CardContent>
-							</CardActionArea>
-							<CardActions>
-								<h5>Written by: {blog.username}</h5>
-							</CardActions>
-						</Card>))
-						: <li key={
-							'no one'
-						}>No Blogs</li>}
-			</ul> */}
+
 		</div>
 	);
 };

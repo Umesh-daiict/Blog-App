@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import './Navbar.css';
 function Header() {
 	const username = localStorage.getItem('user');
@@ -15,9 +16,12 @@ function Header() {
 			<AppBar>
 				<Toolbar>
 					<Typography>
-						<a href='/all' style={{ textDecoration: 'none', color: 'white' }}>
+						<Link to='/all' style={{ textDecoration: 'none', color: 'white' }} >
+
 							React-Blogs
-						</a>
+							<span style={{ opacity: '0.5' }}> : See All !</span>
+						</Link>
+
 					</Typography>
 
 					<nav className='nav'>
@@ -27,21 +31,29 @@ function Header() {
 									Hi! {username.toString()}
 								</li>
 							)}
-							{username && (
+
+							<Link to="/Create">
+								<li>
+									Create Blog !
+								</li>
+							</Link>
+							{username ?
 								<li>
 									<button onClick={logOut}>Logout</button>
 								</li>
-							)}
-
-							<li>
-								<a href='/Create'>Create</a>
-							</li>
-							<li>
-								<a href='/login'>login</a>
-							</li>
-							<li>
-								<a href='/register'>Sing Up</a>
-							</li>
+								:
+								<>
+									<li>
+										<Link to="/login">
+											login
+										</Link>
+									</li>
+									<li>
+										<Link to="register">
+											Sing Up
+										</Link>
+									</li>
+								</>}
 
 						</ul>
 					</nav>
