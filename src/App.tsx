@@ -5,7 +5,7 @@ import Header from './Components/UI/Navbar';
 
 import { BrowserRouter } from 'react-router-dom';
 import Blog from './Components/Blog/Blog';
-import NavTabs from './Components/UI/Tab';
+
 //   }
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
 		<div className='App'>
 			<BrowserRouter>
 				<Header />
-				<NavTabs />
+
 				<Blog />
 			</BrowserRouter>
 

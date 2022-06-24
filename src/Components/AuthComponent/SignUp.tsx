@@ -49,7 +49,7 @@ const SignUp: FC = () => {
 			});
 	};
 	return (
-		<Card style={{ height: '95%', width: '40%', margin: 'auto' }}>
+		<Card style={{ height: '95%', width: '40%', margin: '100px auto' }}>
 			<div className='col-md-12'>
 				<div className='card-body'>
 					<h3 className='card-title text-center text-secondary mt-3 mb-3'>
